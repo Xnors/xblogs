@@ -5,6 +5,7 @@ import vue from '@vitejs/plugin-vue'
 // 配置 @ 路径别名
 export default defineConfig({
   plugins: [vue()],
+  base: './',
   resolve: {
     alias: {
       '@': './src'

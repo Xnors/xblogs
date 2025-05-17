@@ -24,26 +24,6 @@ import Blog from "../components/Blog.vue";
         date="2021-06-22"
         routeurl="/blog/vue3"
       ></Blog>
-      <Blog
-        class="blog"
-        name="Vue 3.0 发布了"
-        desc="Vue 3.0 发布了，带来了许多新特性，比如 Composition API、Teleport、Fragments 等等。"
-        date="2021-06-22"
-        routeurl="/blog/vue3"
-      ></Blog>
-      <Blog
-        class="blog"
-        name="Vue 3.0 发布了"
-        desc="Vue 3.0 发布了，带来了许多新特性，比如 Composition API、Teleport、Fragments 等等。"
-        date="2021-06-22"
-        routeurl="/blog/vue3"
-      ></Blog><Blog
-        class="blog"
-        name="Vue 3.0 发布了"
-        desc="Vue 3.0 发布了，带来了许多新特性，比如 Composition API、Teleport、Fragments 等等。"
-        date="2021-06-22"
-        routeurl="/blog/vue3"
-      ></Blog>
     </div>
   </s-page>
 </template>
