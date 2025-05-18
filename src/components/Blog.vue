@@ -1,4 +1,5 @@
 <script setup>
+import "sober";
 const props = defineProps({
   name: {
     type: String,
@@ -26,13 +27,14 @@ console.log(props);
 </script>
 
 <template>
-  <div class="blog">
+  <s-ripple class="blog">
     <router-link :to="routeurl" id="gotoBlog">
       <h2 id="title">{{ name }}</h2>
-    </router-link>
-    <p id="desc">{{ desc }}</p>
-    <p id="date">{{ date }}</p>
-  </div>
+
+      <p id="desc">{{ desc }}</p>
+      <p id="date">{{ date }}</p></router-link
+    >
+  </s-ripple>
 </template>
 
 <style lang="scss" type="text/scss">
@@ -65,9 +67,7 @@ console.log(props);
     border 0.3s ease-in-out, all 0.3s ease-in-out;
   border: 1px solid #75757502;
   &:hover {
-    background-color: #9191913f;
     transform: translateY(-3px);
-
     border: 1px solid #bebebe;
   }
 }

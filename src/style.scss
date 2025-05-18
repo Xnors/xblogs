@@ -6,7 +6,9 @@ $backgroud-color: #1c1c1d;
 }
 
 :root {
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', deyihei, system-ui, Avenir, Helvetica, Arial, ;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji", system-ui, Avenir, Helvetica, Arial, deyihei;
   line-height: 1.5;
   font-weight: 400;
 
@@ -22,9 +24,16 @@ $backgroud-color: #1c1c1d;
 
 a {
   text-decoration: none;
-  color: inherit;
+  color: #afafd4;
 }
 
-li{
+li {
   margin-left: 1vw;
+}
+
+code {
+  background-color: #aca1da2d;
+  padding: 0.2em 0.4em;
+  border-radius: 0.2em;
+  font-size: 85%;
 }

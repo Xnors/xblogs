@@ -1,25 +1,31 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import NotFound from '../views/NotFound.vue';
-import Vue3 from '../blogs/Vue3.vue';
+import Bfinter from '../blogs/Bfinter.vue';
 
 
 const routes = [
+    // {
+    //     path: '/',
+    //     name: 'Home',
+    //     component: Home,
+    // },
     {
-        path: '/',
-        name: 'Home',
+        path: '/xblogs',
+        name: 'xblogs',
         component: Home,
     },
     {
-        path: '/blog/vue3',
-        name: 'Vue3',
-        component: Vue3,
+        path: '/xblogs/blog/bfinter',
+        name: 'bfinter',
+        component: Bfinter,
     },
     {
         path: '/:pathMatch(.*)*',
         name: 'NotFound',
         component: NotFound,
     },
+
 ];
 
 

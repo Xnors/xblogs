@@ -208,6 +208,11 @@
   "resolved" "https://registry.npmmirror.com/has-flag/-/has-flag-4.0.0.tgz"
   "version" "4.0.0"
 
+"highlightjs@^9.16.2":
+  "integrity" "sha512-FK1vmMj8BbEipEy8DLIvp71t5UsC7n2D6En/UfM/91PCwmOpj6f2iu0Y0coRC62KSRHHC+dquM2xMULV/X7NFg=="
+  "resolved" "https://registry.npmmirror.com/highlightjs/-/highlightjs-9.16.2.tgz"
+  "version" "9.16.2"
+
 "immutable@^5.0.2":
   "integrity" "sha512-qHKXW1q6liAk1Oys6umoaZbDRqjcjgSrbnrifHsfsttza7zcvRAsL7mMV6xWcyhwQy7Xj5v4hhbr6b+iDYwlmQ=="
   "resolved" "https://registry.npmmirror.com/immutable/-/immutable-5.1.2.tgz"
