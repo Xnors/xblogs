@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import NotFound from '../views/NotFound.vue';
-import Bfinter from '../blogs/Bfinter.vue';
+import Welcome from '../blogs/Welcome.vue';
 
 
 const routes = [
@@ -16,9 +16,9 @@ const routes = [
         component: Home,
     },
     {
-        path: '/xblogs/blog/bfinter',
-        name: 'bfinter',
-        component: Bfinter,
+        path: '/xblogs/blog/welcome',
+        name: 'Welcome',
+        component: Welcome,
     },
     {
         path: '/:pathMatch(.*)*',

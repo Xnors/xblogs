@@ -43,6 +43,7 @@ console.log(props);
   padding: max(10px, calc(0.6vw + 0.6vh));
   background-color: #91919125;
   border-radius: calc(0.5vw + 0.5vh);
+  width: 42%;
 
   #title {
     font-size: 24px;
@@ -74,5 +75,11 @@ console.log(props);
 }
 router-link {
   color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .blog{
+    width: 92.5%;
+  }
 }
 </style>

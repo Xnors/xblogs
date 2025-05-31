@@ -1,9 +1,9 @@
 const blogs = [
     {
-        name: "Bfinter--一个高性能的brainfuck解释/编译器",
-        desc: "Bfinter是一个高性能的brainfuck解释/编译器, 用golang编写, 可以快速运行或编译brainfuck代码, 支持多种平台",
-        date: "2025-05-18",
-        routeurl: "/xblogs/blog/bfinter"
-    }
+        name: "Welcome to XBlogs!",
+        desc: "欢迎使用 Xblogs! 点击这个卡片上方的蓝字可以查看网站使用教程!",
+        date: "2025-05-31",
+        routeurl: "/xblogs/blog/welcome"
+    },
 ]
 export default blogs
