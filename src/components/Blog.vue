@@ -32,8 +32,8 @@ console.log(props);
       <h2 id="title">{{ name }}</h2>
 
       <p id="desc">{{ desc }}</p>
-      <p id="date">{{ date }}</p></router-link
-    >
+      <p id="date">{{ date }}</p>
+    </router-link>
   </s-ripple>
 </template>
 
@@ -65,10 +65,14 @@ console.log(props);
 
   transition: background-color 0.1s ease-in-out, transform 0.3s ease-in-out,
     border 0.3s ease-in-out, all 0.3s ease-in-out;
+
   border: 1px solid #75757502;
   &:hover {
     transform: translateY(-3px);
     border: 1px solid #bebebe;
   }
+}
+router-link {
+  color: white;
 }
 </style>

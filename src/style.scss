@@ -14,6 +14,7 @@ $backgroud-color: #1c1c1d;
 
   color: rgba(255, 255, 255, 0.87);
   background-color: $backgroud-color;
+  scrollbar-width: thin;
 }
 
 * {
@@ -24,11 +25,12 @@ $backgroud-color: #1c1c1d;
 
 a {
   text-decoration: none;
-  color: #afafd4;
+  color: #c4c4ff;
 }
 
 li {
-  margin-left: 1vw;
+  margin-left: 2vw;
+  list-style: circle;
 }
 
 code {
@@ -36,4 +38,15 @@ code {
   padding: 0.2em 0.4em;
   border-radius: 0.2em;
   font-size: 85%;
+}
+
+hr {
+  margin: 1em 0;
+  border-width: thin;
+}
+
+@media screen and (max-width: 768px) {
+  li {
+  margin-left: 5vw;
+}
 }
