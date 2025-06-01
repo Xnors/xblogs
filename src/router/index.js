@@ -14,6 +14,7 @@ const routes = [
         path: '/xblogs',
         name: 'xblogs',
         component: Home,
+        props: true,
     },
     {
         path: '/xblogs/blog/welcome',

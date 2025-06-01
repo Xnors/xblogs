@@ -1,26 +1,34 @@
 <script setup>
 import "sober";
 import Blog from "../components/Blog.vue";
-import blogs from "../blogs";
+import { defineProps } from "vue";
+// import blogs from "../blogs";
+// let blogs = reactive([]);
+defineProps({
+  blogs: {
+    type: Array,
+    required: true,
+  },
+});
 </script>
 
 <template>
-    <div class="content">
-      <Blog
-        v-for="blog in blogs"
-        :key="blog.name"
-        :class="blog.name"
-        :name="blog.name"
-        :desc="blog.desc"
-        :date="blog.date"
-        :routeurl="blog.routeurl"
-      ></Blog>
-    </div>
+  <div class="content">
+    <Blog
+      v-for="blog in blogs"
+      :key="blog.name"
+      :class="blog.name"
+      :name="blog.name"
+      :desc="blog.desc"
+      :date="blog.date"
+      :routeurl="blog.routeurl"
+      v-show="blog.show"
+    ></Blog>
+  </div>
 </template>
 
 <style lang="scss" type="text/scss">
 $backgroud-color: #1c1c1d;
-
 
 .content {
   background-color: $backgroud-color;
@@ -31,5 +39,4 @@ $backgroud-color: #1c1c1d;
   align-items: center;
   height: 100%;
 }
-
 </style>

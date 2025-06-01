@@ -6,10 +6,12 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" type="text/scss" scoped>
+$backgroud-color: #1c1c1d;
+
 .not-found {
   text-align: center;
-  margin-top: 50px;
+  background-color: $backgroud-color;
 }
 
 .not-found h1 {

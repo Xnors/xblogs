@@ -43,7 +43,7 @@ const markdowntext = `
 .content {
   width: 100%;
   min-height: 100vh;
-  padding: 1vw;
+  padding: 0.6vw;
 
   .boxinside {
     padding: calc(1vw + 1vh);
@@ -55,7 +55,7 @@ const markdowntext = `
 
 @media screen and (max-width: 768px) {
   * {
-    font-size: 85%;
+    font-size: 96%;
   }
   .content {
     .boxinside {

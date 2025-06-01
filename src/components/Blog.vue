@@ -1,5 +1,6 @@
 <script setup>
 import "sober";
+
 const props = defineProps({
   name: {
     type: String,
