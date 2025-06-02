@@ -12,5 +12,8 @@ export default defineConfig({
     alias: {
       '@': './src'
     }
-  }
+  },
+  build: {
+    assetsInclude: ['**/*.md'], // 将所有 .md 文件视为静态资源
+  },
 })

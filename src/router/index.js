@@ -1,8 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
-import NotFound from '../views/NotFound.vue';
-import Welcome from '../blogs/Welcome.vue';
-
 
 const routes = [
     // {
@@ -19,14 +16,18 @@ const routes = [
     {
         path: '/xblogs/blog/welcome',
         name: 'Welcome',
-        component: Welcome,
+        component: () => import('../blogs/Welcome.vue'),
+    },
+    {
+        path: '/xblogs/blog/python-yield-from',
+        name: 'PythonYieldFrom',
+        component: () => import('../blogs/PythonYieldFrom.vue'),
     },
     {
         path: '/:pathMatch(.*)*',
         name: 'NotFound',
-        component: NotFound,
+        component: () => import('../views/NotFound.vue'),
     },
-
 ];
 
 

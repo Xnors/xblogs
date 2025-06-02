@@ -8,7 +8,14 @@ const blogs = [
         routeurl: "/xblogs/blog/welcome",
         show: true,
     },
-
-
+    {
+        name: "Python隐藏特性: yield from",
+        desc: "Python 3.3 引入了新的语法 yield from，可以用来简化生成器的编写。本文将介绍 yield from 的用法。",
+        keywords: ["Python", "yield from", "生成器", "Python小技巧"],
+        date: "2025-06-02",
+        author: "Fexcode",
+        routeurl: "/xblogs/blog/python-yield-from",
+        show: true,
+    },
 ].reverse()
 export default blogs

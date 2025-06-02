@@ -346,6 +346,11 @@
   dependencies:
     "function-bind" "^1.1.2"
 
+"highlight.js@^11.11.1":
+  "integrity" "sha512-Xwwo44whKBVCYoliBQwaPvtd/2tYFkRQtXDWj1nackaV2JPXx3L0+Jvd8/qCJ2p+ML0/XVkJ2q+Mr+UVdpJK5w=="
+  "resolved" "https://registry.npmmirror.com/highlight.js/-/highlight.js-11.11.1.tgz"
+  "version" "11.11.1"
+
 "highlightjs@^9.16.2":
   "integrity" "sha512-FK1vmMj8BbEipEy8DLIvp71t5UsC7n2D6En/UfM/91PCwmOpj6f2iu0Y0coRC62KSRHHC+dquM2xMULV/X7NFg=="
   "resolved" "https://registry.npmmirror.com/highlightjs/-/highlightjs-9.16.2.tgz"
