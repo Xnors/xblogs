@@ -33,10 +33,18 @@ const blogsFiltered = ref(blogs);
 
 // 过滤博客列表
 function searchBlogs(text) {
-  blogsFiltered.value = blogs.filter(
-    (blog) =>
-      blog.name.toLowerCase().includes(text.toLowerCase()) ||
-      blog.desc.toLowerCase().includes(text.toLowerCase())
+  let words = text.split(" ");
+
+  // 每个word都匹配到博客中，且博客中包含该word的关键字
+  blogsFiltered.value = blogs.filter((blog) =>
+    words.every(
+      (word) =>
+        blog.name.toLowerCase().includes(word.toLowerCase()) ||
+        blog.desc.toLowerCase().includes(word.toLowerCase()) ||
+        blog.keywords.some((keyword) =>
+          keyword.toLowerCase().includes(word.toLowerCase())
+        )
+    )
   );
   console.log(blogsFiltered.value);
 }
