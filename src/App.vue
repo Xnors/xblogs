@@ -4,8 +4,9 @@ import { watch, ref, onMounted } from "vue";
 import blogs from "./blogs.js";
 import "sober";
 import axios from "axios";
+import { initializeVisitCount } from "./scripts/get_visit_count.js";
 
-const serverApiUrl = "https://xnors.pythonanywhere.com/get_visit_count";
+const serverApiUrl = "https://xnors.pythonanywhere.com/new_visit";
 const sendNewVisitToServer = () => {
   axios
     .get(serverApiUrl)
@@ -40,8 +41,16 @@ function searchBlogs(text) {
   console.log(blogsFiltered.value);
 }
 
-onMounted(() => {
+let visitCount = ref("(获取中...)");
+
+onMounted(async () => {
   sendNewVisitToServer();
+  try {
+    visitCount.value = await initializeVisitCount();
+  } catch (error) {
+    console.error("Failed to get visit count:", error);
+    visitCount.value = "(获取失败!)";
+  }
 });
 </script>
 
@@ -78,8 +87,14 @@ onMounted(() => {
           </s-icon-button>
           <div slot="headline">Title</div>
           <div slot="text">
-            问人生、头白京国，算来何事消得。不如罨画清溪上，蓑笠扁舟一只。人不识，且笑煮、鲈鱼趁著莼丝碧。无端酸鼻，向岐路消魂，征轮驿骑，断雁西风急。
-            英雄辈，事业东西南北。临风因甚泣。酬知有愿频挥手，零雨凄其此日。休太息，须信道、诸公衮衮皆虚掷。年来踪迹。有多少雄心，几翻恶梦，泪点霜华织。
+            本网站由
+            <a href="https://xnors.github.io">XnorsCode/异或工作室</a>
+            开发, 仅用于技术交流, 严禁随意转载, 转载请联系我们! <br />
+            邮箱:
+            <a href="mailto:xnors-studio@outlook.com"
+              >xnors-studio@outlook.com</a
+            ><br /><br />
+            当前总访问次数: {{ visitCount }}
           </div>
           <s-button slot="action" type="text">取消</s-button>
           <s-button slot="action" type="text">确定</s-button>
@@ -138,14 +153,17 @@ $background-color: #1c1c1d; // 修正拼写错误
       }
     }
     .dialog-box {
+      // text-align: center;
       div[slot="text"] {
         // display: none;
-        margin: 1vh 1.6vw;
+        margin-left: 5vw;
+        margin: 1vh 1vw;
       }
 
       div[slot="headline"] {
-        margin: 3vh 1.6vw;
-        margin-bottom: 0.2vh;
+        margin-left: 5vw;
+        margin: 3vh 1vw;
+        margin-bottom: 0.6vh;
       }
     }
   }
@@ -156,6 +174,20 @@ $background-color: #1c1c1d; // 修正拼写错误
     width: 50%;
     & :focus {
       width: 80%;
+    }
+  }
+  .dialog-box {
+    font-size: 90%;
+    div[slot="text"] {
+      // display: none;
+      margin: 2vh 2vw;
+      margin-left: 5vw;
+    }
+
+    div[slot="headline"] {
+      margin: 2vh 2vw;
+      margin-bottom: 0.5vh;
+      margin-left: 5vw;
     }
   }
 }

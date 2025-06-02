@@ -1,52 +1,20 @@
 <script setup>
 import { marked } from "marked";
-import axios from "axios";
 import { onMounted, ref } from "vue";
+import {
+  getVisitCount,
+  loadFromCache,
+  initializeVisitCount,
+} from "../scripts/get_visit_count.js"; // 导入封装的函数
 
 const visitCount = ref("(正在获取...)");
-const serverApiUrl = "https://xnors.pythonanywhere.com/get_visit_count";
 
-const getVisitCount = async () => {
-  console.log("Getting visit count from server...");
+onMounted(async () => {
   try {
-    const response = await axios.get(serverApiUrl);
-    const count = response.data;
-    const timestamp = Date.now();
-
-    // 保存到 localStorage
-    localStorage.setItem("visitCount", count);
-    localStorage.setItem("timestamp", timestamp);
-
-    visitCount.value = count;
+    visitCount.value = await initializeVisitCount();
   } catch (error) {
-    console.error(error);
-  }
-};
-
-const loadFromCache = () => {
-  const cachedCount = localStorage.getItem("visitCount");
-  const cachedTimestamp = localStorage.getItem("timestamp");
-
-  if (cachedCount && cachedTimestamp) {
-    const currentTime = Date.now();
-    const timeDiff = currentTime - Number(cachedTimestamp);
-
-    // 如果时间差小于一分钟（60000毫秒），使用缓存数据
-    if (timeDiff < 60000) {
-      visitCount.value = cachedCount;
-      console.log("Using cached visit count");
-      return true;
-    }
-  }
-
-  return false;
-};
-
-onMounted(() => {
-  // 尝试从缓存加载
-  if (!loadFromCache()) {
-    // 如果缓存不可用，从服务器获取
-    getVisitCount();
+    console.error("Failed to get visit count:", error);
+    visitCount.value = "(获取失败)";
   }
 });
 
