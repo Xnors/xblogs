@@ -32,28 +32,44 @@ watch(searchText, (newValue) => {
 const blogsFiltered = ref(blogs);
 
 function searchBlogs(text) {
-  let words = text.split(" ");
+  let author = "";
+  let text_without_author = "";
+  if (text.includes(":")) {
+    author = text.split(":")[0];
+    text_without_author = text.split(":")[1];
+  } else if (text.includes("：")) {
+    author = text.split("：")[0];
+    text_without_author = text.split(":")[1];
+  } else {
+    console.log("No author specified");
+    text_without_author = text;
+  }
+
+  let words = text_without_author.split(" ");
 
   // 每个word都匹配到博客中，且博客中包含该word的关键字
   blogsFiltered.value = blogs
     .filter((blog) =>
       words.some(
         (word) =>
-          blog.name.toLowerCase().includes(word.toLowerCase()) ||
-          blog.desc.toLowerCase().includes(word.toLowerCase()) ||
-          blog.keywords.some((keyword) =>
-            keyword.toLowerCase().includes(word.toLowerCase())
-          )
+          blog.author.toLowerCase().includes(author.toLowerCase()) &&
+          (blog.name.toLowerCase().includes(word.toLowerCase()) ||
+            blog.desc.toLowerCase().includes(word.toLowerCase()) ||
+            blog.keywords.some((keyword) =>
+              keyword.toLowerCase().includes(word.toLowerCase())
+            ))
       )
     )
     .map((blog) => {
       // 计算匹配的word数量
-      let matchCount = words.filter((word) =>
-        blog.name.toLowerCase().includes(word.toLowerCase()) ||
-        blog.desc.toLowerCase().includes(word.toLowerCase()) ||
-        blog.keywords.some((keyword) =>
-          keyword.toLowerCase().includes(word.toLowerCase())
-        )
+      let matchCount = words.filter(
+        (word) =>
+          blog.author.toLowerCase().includes(author.toLowerCase()) &&
+          (blog.name.toLowerCase().includes(word.toLowerCase()) ||
+            blog.desc.toLowerCase().includes(word.toLowerCase()) ||
+            blog.keywords.some((keyword) =>
+              keyword.toLowerCase().includes(word.toLowerCase())
+            ))
       ).length;
       return { ...blog, matchCount };
     })
