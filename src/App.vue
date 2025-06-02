@@ -31,24 +31,36 @@ watch(searchText, (newValue) => {
 
 const blogsFiltered = ref(blogs);
 
-// 过滤博客列表
 function searchBlogs(text) {
   let words = text.split(" ");
 
   // 每个word都匹配到博客中，且博客中包含该word的关键字
-  blogsFiltered.value = blogs.filter((blog) =>
-    words.every(
-      (word) =>
+  blogsFiltered.value = blogs
+    .filter((blog) =>
+      words.some(
+        (word) =>
+          blog.name.toLowerCase().includes(word.toLowerCase()) ||
+          blog.desc.toLowerCase().includes(word.toLowerCase()) ||
+          blog.keywords.some((keyword) =>
+            keyword.toLowerCase().includes(word.toLowerCase())
+          )
+      )
+    )
+    .map((blog) => {
+      // 计算匹配的word数量
+      let matchCount = words.filter((word) =>
         blog.name.toLowerCase().includes(word.toLowerCase()) ||
         blog.desc.toLowerCase().includes(word.toLowerCase()) ||
         blog.keywords.some((keyword) =>
           keyword.toLowerCase().includes(word.toLowerCase())
         )
-    )
-  );
+      ).length;
+      return { ...blog, matchCount };
+    })
+    .sort((a, b) => b.matchCount - a.matchCount); // 根据匹配的word数量降序排序
+
   console.log(blogsFiltered.value);
 }
-
 let visitCount = ref("(获取中...)");
 
 onMounted(async () => {
