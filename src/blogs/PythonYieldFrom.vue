@@ -7,7 +7,7 @@ const markdowntext = ref("");
 
 const loadMd = async () => {
   try {
-    const response = await fetch("/mds/PythonYieldFrom.md");
+    const response = await fetch("/xblogs/mds/PythonYieldFrom.md");
     const markdownText = await response.text();
     markdowntext.value = markdownText;
   } catch (error) {
