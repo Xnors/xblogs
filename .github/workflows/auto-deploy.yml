@@ -31,9 +31,10 @@ jobs:
       - name: 移动 ./public/xblogs/mds 到 ./public/mds
         run: |
           mkdir -p ./public/temp
+          mkdir -p ./public/mds
           mv ./public/xblogs/mds/* ./public/temp
           rm -rf ./public/xblogs/mds
-          mv ./public/temp ./public/xblogs/mds
+          mv ./public/temp/* ./public/mds
           rm -rf ./public/temp
 
       - name: 安装yarn
