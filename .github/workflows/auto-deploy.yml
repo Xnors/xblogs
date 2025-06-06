@@ -28,10 +28,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: 移动 /public/mds 到 /public/xblogs/mds
+      - name: 移动 /public/xblogs/mds 到 /public/mds
         run: |
-          mkdir -p public/xblogs
-          mv public/mds public/xblogs/
+          mkdir -p /public/mds
+          mv /public/xblogs/mds/* /public/mds/
+          
 
       - name: 安装yarn
         run: npm install -g yarn
