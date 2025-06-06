@@ -105,7 +105,7 @@
 
 3. 注册路由 `src/router/index.js`
 
-   ```js
+   ```javascript
    // src/router/index.js
    // ...
    const routes = [
@@ -122,7 +122,7 @@
 
 4. 填写博客信息 `src/blogs.js`
 
-   ```js
+   ```javascript
    // src/blogs.js
    const blogs = [
      // ...
