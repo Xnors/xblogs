@@ -4,7 +4,7 @@ on:
   # 监听push操作
   push:
     branches:
-      - main 
+      - main
   pull_request:
 
 permissions:
@@ -30,8 +30,10 @@ jobs:
 
       - name: 移动 ./public/xblogs/mds 到 ./public/mds
         run: |
-          mv ./public/xblogs/mds/* ./public/mds/
-
+          mv ./public/xblogs/mds/* /tmp/mds
+          rm -rf ./public/xblogs/mds
+          mv /tmp/mds ./public/xblogs/mds
+          rm -rf /tmp/mds
 
       - name: 安装yarn
         run: npm install -g yarn
