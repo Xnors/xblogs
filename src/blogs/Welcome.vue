@@ -2,7 +2,7 @@
 import { marked } from "marked";
 import { onMounted, ref, nextTick } from "vue";
 import { initializeVisitCount } from "../scripts/get_visit_count.js";
-import hljs from "highlight.js"; // 确保正确导入 highlight.js
+import hljs from "highlight.js/lib/core";
 
 const visitCount = ref("(正在获取...)");
 

@@ -1,6 +1,7 @@
 <script setup>
 import { marked } from "marked";
-import hljs from "highlight.js";
+import hljs from "highlight.js/lib/core";
+
 import { onMounted, nextTick, ref } from "vue";
 
 const markdowntext = ref("");
