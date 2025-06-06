@@ -1,5 +1,7 @@
 <script setup>
-import "sober";
+import { Snackbar } from "sober";
+import { onMounted, onUnmounted, ref } from "vue";
+import { useRouter } from "vue-router";
 
 const props = defineProps({
   name: {
@@ -24,14 +26,29 @@ const props = defineProps({
   },
 });
 
-console.log(props);
+const router = useRouter();
+const snackbar = ref(null);
+
+// 监听路由变化
+const closeSnackbarOnRouteChange = () => {
+  if (snackbar.value) {
+    snackbar.value.close();
+  }
+};
+
+onMounted(() => {
+  router.afterEach(closeSnackbarOnRouteChange);
+});
+
+onUnmounted(() => {
+  router.afterEach(closeSnackbarOnRouteChange);
+});
 </script>
 
 <template>
-  <s-ripple class="blog">
+  <s-ripple class="blog" @click="snackbar = Snackbar.builder('加载中...')">
     <router-link :to="routeurl" id="gotoBlog">
       <h2 id="title">{{ name }}</h2>
-
       <p id="desc">{{ desc }}</p>
       <p id="date">{{ date }}</p>
     </router-link>
@@ -79,7 +96,7 @@ router-link {
 }
 
 @media screen and (max-width: 768px) {
-  .blog{
+  .blog {
     width: 92.5%;
   }
 }
