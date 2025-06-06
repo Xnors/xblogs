@@ -28,9 +28,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: 移动 /public/xblogs/mds 到 /public/mds
+      - name: 移动 ./public/xblogs/mds 到 ./public/mds
         run: |
-          mv /public/xblogs/mds/* /public/mds/
+          mv ./public/xblogs/mds/* ./public/mds/
 
 
       - name: 安装yarn
