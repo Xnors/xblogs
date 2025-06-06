@@ -30,10 +30,11 @@ jobs:
 
       - name: 移动 ./public/xblogs/mds 到 ./public/mds
         run: |
-          mv ./public/xblogs/mds/* /tmp/mds
+          mkdir -p ./public/temp
+          mv ./public/xblogs/mds/* ./public/temp
           rm -rf ./public/xblogs/mds
-          mv /tmp/mds ./public/xblogs/mds
-          rm -rf /tmp/mds
+          mv ./public/temp ./public/xblogs/mds
+          rm -rf ./public/temp
 
       - name: 安装yarn
         run: npm install -g yarn
