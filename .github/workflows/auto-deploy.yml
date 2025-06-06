@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - main 
-      - dev
   pull_request:
 
 permissions:
@@ -28,6 +27,11 @@ jobs:
       # 官方action，将代码拉取到虚拟机
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: 移动 /public/mds 到 /public/xblogs/mds
+        run: |
+          mkdir -p public/xblogs
+          mv public/mds public/xblogs/
 
       - name: 安装yarn
         run: npm install -g yarn
