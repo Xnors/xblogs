@@ -1,3 +1,10 @@
+<script setup>
+// 如果url是 /xblogs/ 则跳转到 #/xblogs/
+if (window.location.hash === '#/') {
+  window.location.hash = '#/xblogs';
+}
+</script>
+
 <template>
   <div class="not-found">
     <h1>404 - 页面未找到</h1>
