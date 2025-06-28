@@ -20,14 +20,37 @@ const loadMd = async () => {
 onMounted(async () => {
   await loadMd();
   
-  // 确保 DOM 更新完成后调用 highlightAll 和 MathJax
   nextTick(() => {
     hljs.highlightAll();
     
-    // 配置并初始化 MathJax
+    // 配置并初始化 MathJax 并设置公式背景色
     window.MathJax = {
       tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      startup: {
+        ready: () => {
+          // 公式渲染完成后，设置背景色
+          MathJax.startup.defaultReady();
+          
+          // 获取所有公式元素并设置背景色
+          document.addEventListener('DOMContentLoaded', () => {
+            const mathElements = document.querySelectorAll('.MJXc-TeX');
+            mathElements.forEach(element => {
+              // 创建一个 div 包裹公式，并设置背景色
+              const wrapper = document.createElement('div');
+              wrapper.style.backgroundColor = 'rgba(0, 0, 0, 0.05)'; // 浅色背景
+              wrapper.style.padding = '8px 12px';
+              wrapper.style.borderRadius = '4px';
+              wrapper.style.margin = '8px 0';
+              wrapper.style.display = 'inline-block'; // 适应内容宽度
+              
+              // 将公式元素移到新 div 中
+              element.parentNode.insertBefore(wrapper, element);
+              wrapper.appendChild(element);
+            });
+          });
+        }
       }
     };
     
@@ -37,7 +60,7 @@ onMounted(async () => {
     script.async = true;
     document.head.appendChild(script);
     
-    // 等待 MathJax 加载完成后渲染公式
+    // 确保 DOM 完全加载后再渲染公式
     script.onload = () => {
       MathJax.typeset();
     };
