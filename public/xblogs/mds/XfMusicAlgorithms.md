@@ -75,7 +75,7 @@ $$ W_1' = 59.61, W_2' = 48.01, W_3' = 192.06, W_4' = 500 $$
 
 6 月 19 日，我突发奇想，设计了一个缩放函数：
 
-$$ f(x, \alpha) = \log\_\alpha (x^-1 + \alpha) $$
+$$ f(x, \alpha) = \log_\alpha (x^-1 + \alpha) $$
 
 故
 
@@ -132,3 +132,13 @@ $$ \text{Pred(C1)} = 2.7 \times 10^3, dW(C1) = 295.8, W\_{\text{Item1}} = 2968 $
 ### 3. 对于算法的最终修正，为防止权重值为负数, 设置最小值为 0.01
 
 $$ W = \max(0.01, W + dW(n)) $$
+
+即:
+
+
+
+ $$   Pred(n) = \frac{100W_n}{\frac{N}{\sum_{j=1}^{N} W_j}+W_n} $$
+
+   $$ W_new=\max(0.01, W_old + \eta \cdot (prog(n)-Pred(n)) \cdot log_\alpha (Pred(n)^{-1}+\alpha)) $$
+
+
