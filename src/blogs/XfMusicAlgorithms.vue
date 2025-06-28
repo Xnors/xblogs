@@ -8,7 +8,7 @@ const markdowntext = ref("");
 
 const loadMd = async () => {
   try {
-    const response = await fetch("/xblogs/mds/PythonYieldFrom.md");
+    const response = await fetch("/xblogs/mds/XfMusicAlgorithms.md");
     const markdownText = await response.text();
     markdowntext.value = markdownText;
   } catch (error) {
@@ -19,9 +19,28 @@ const loadMd = async () => {
 
 onMounted(async () => {
   await loadMd();
-  // 确保 DOM 更新完成后调用 highlightAll
+  
+  // 确保 DOM 更新完成后调用 highlightAll 和 MathJax
   nextTick(() => {
     hljs.highlightAll();
+    
+    // 配置并初始化 MathJax
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+    
+    // 创建并添加 MathJax 脚本
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+    script.async = true;
+    document.head.appendChild(script);
+    
+    // 等待 MathJax 加载完成后渲染公式
+    script.onload = () => {
+      MathJax.typeset();
+    };
   });
 });
 </script>

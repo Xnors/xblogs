@@ -19,9 +19,9 @@ const routes = [
         component: () => import('../blogs/Welcome.vue'),
     },
     {
-        path: '/xblogs/blog/python-yield-from',
-        name: 'PythonYieldFrom',
-        component: () => import('../blogs/PythonYieldFrom.vue'),
+        path: '/xblogs/blog/xfmusicalgorithms',
+        name: 'XFMusicalgorithms',
+        component: () => import('../blogs/XfMusicAlgorithms.vue'),
     },
     {
         path: '/:pathMatch(.*)*',

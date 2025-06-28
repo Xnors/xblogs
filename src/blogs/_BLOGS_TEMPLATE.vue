@@ -8,7 +8,6 @@ const markdowntext = ref("");
 
 const loadMd = async () => {
   try {
-    // 这个 /xblogs 是为了保证 github pages 可以正常显示, 本地调试时要改成 /
     const response = await fetch("/xblogs/mds/***.md");
     const markdownText = await response.text();
     markdowntext.value = markdownText;

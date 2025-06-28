@@ -56,6 +56,9 @@ onUnmounted(() => {
 </template>
 
 <style lang="scss" type="text/scss">
+h2 {
+  margin: 0;
+}
 .blog {
   margin: min(calc(0.5vw + 0.5vh), 12px) max(calc(0.5vw + 0.5vh), 18px);
   padding: max(10px, calc(0.6vw + 0.6vh));

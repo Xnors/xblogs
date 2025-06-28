@@ -33,16 +33,12 @@ li {
   list-style: circle;
 }
 
-
 code {
-  background-color: #aca1da2d;
+  background-color: #afa4db38;
   padding: 0.2em 0.4em;
   border-radius: 0.2em;
-  // font-size: 95%;
-  // color: #dbcd8b;
-  // font-weight: bloder;
-  // margin: 0.3em;
-  // font-style: normal;
+  margin: 0.6em 0.2em;
+  color: #ffeed7;
 }
 
 hr {
@@ -50,7 +46,52 @@ hr {
   border-width: thin;
 }
 
-blockquote{
+h1,
+h2,
+h3 {
+  position: relative;
+  margin-bottom: 0.3em;
+  &::before {
+    content: "#";
+    position: absolute;
+    left: -0.68em;
+    color: rgba(78, 78, 209, 0.63);
+    opacity: 0;
+    transition: all 0.1s ease-in-out;
+  }
+  &:hover {
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+h2 {
+  &::before {
+    content: ">";
+  }
+}
+
+h3 {
+  &::before {
+    content: "$";
+  }
+}
+
+h2,
+h3 {
+  margin-top: 1em;
+  margin-bottom: 0.4em;
+}
+
+h4,
+h5,
+h6 {
+  margin-top: 0.5em;
+  margin-bottom: 0.2em;
+}
+
+blockquote {
   margin: 0.5em 0;
   padding: 0.4em 0.75em;
   border-left: 0.25em solid #c4c4ff88;
@@ -60,6 +101,6 @@ blockquote{
 
 @media screen and (max-width: 768px) {
   li {
-  margin-left: 5vw;
-}
+    margin-left: 5vw;
+  }
 }
