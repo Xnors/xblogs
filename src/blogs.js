@@ -1,11 +1,11 @@
-const blogs = [
+let _blogs = [
     {
         name: "Welcome to XBlogs!",
         desc: "欢迎使用 Xblogs! 点击这个卡片上方的蓝字可以查看网站使用教程!",
         keywords: ["教程", "新手", "XBlogs", "入门", "使用", "博客"],
         date: "2025-05-31",
         author: "Fexcode",
-        routeurl: "/xblogs/blog/welcome",
+        filename: "welcome.md",
         show: true,
     },
     {
@@ -14,8 +14,19 @@ const blogs = [
         keywords: ["音乐", "推荐", "算法", "XfMusic", "python", "数学"],
         date: "2025-06-28",
         author: "Fexcode",
-        routeurl: "/xblogs/blog/xfmusicalgorithms",
+        filename: "xfmusicalgorithms.md",
         show: true,
     }
 ].reverse()
+
+_blogs.forEach((blog, index) => {
+    blog.routeUrl=`/xblogs/blog/${index}`
+})
+
+let blogs={}
+
+_blogs.forEach((blog, index) => {
+    blogs[index]=blog
+})
+
 export default blogs

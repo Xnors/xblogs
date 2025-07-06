@@ -34,7 +34,7 @@ onMounted(
       :name="blog.name"
       :desc="blog.desc"
       :date="blog.date"
-      :routeurl="blog.routeurl"
+      :routeurl="blog.routeUrl"
       v-show="blog.show"
     ></Blog>
   </div>

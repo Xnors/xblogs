@@ -4,9 +4,11 @@ import { onMounted, ref, nextTick } from "vue";
 import { initializeVisitCount } from "../scripts/get_visit_count.js";
 import hljs from "highlight.js/lib/core";
 import { useRoute } from "vue-router";
+import blogs from "../blogs.js";
+
 
 const route = useRoute();
-const name = route.params.name;
+const id = route.params.id;
 const visitCount = ref("(正在获取...)");
 const markdowntext = ref("");
 
@@ -17,16 +19,24 @@ onMounted(async () => {
     console.error("Failed to get visit count:", error);
     visitCount.value = "(获取失败)";
   }
-  // alert(route.params.name)
+  // alert(route.params.id)
 });
+
+const getItemFromID=(id)=>{
+  console.log(id)
+  console.log(blogs[id])
+return blogs[id]
+}
 
 const loadMd = async () => {
   try {
-    const response = await fetch(`/xblogs/mds/${name}.md`);
+    let iname=getItemFromID(id)["filename"]
+    console.log("LOADING MD FILE:",iname)
+    const response = await fetch(`/xblogs/mds/${iname}`);
     const markdownText = await response.text();
     
     markdowntext.value = markdownText;
-    console.log(markdownText,response);
+    // console.log(markdownText,response);
   } catch (error) {
     console.error("加载md文件失败了:", error);
     markdowntext.value = "加载失败了!!!";
@@ -45,8 +55,12 @@ onMounted(async () => {
   await loadMd();
   nextTick(() => {
     hljs.highlightAll();
-    if (name === 'xfmusicalgorithms') {
+    if (markdowntext.value.includes("$")) {
+      console.log("MathJax is not loaded yet, loading it now...");
       initMathJax();
+    }
+    else{
+      console.log("MathJax is not needed for this blog.")
     }
   });
 });

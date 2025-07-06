@@ -14,20 +14,11 @@ const routes = [
         props: true,
     },
     {
-        path: '/xblogs/blog/:name',
+        path: '/xblogs/blog/:id',
         name: 'Blog',
         component: ()=>import("../blogs/BlogViewer.vue"),
     },
-    // {
-    //     path: '/xblogs/blog/welcome',
-    //     name: 'Welcome',
-    //     component: () => import('../blogs/Welcome.vue'),
-    // },
-    // {
-    //     path: '/xblogs/blog/xfmusicalgorithms',
-    //     name: 'XFMusicalgorithms',
-    //     component: () => import('../blogs/XfMusicAlgorithms.vue'),
-    // },
+
     {
         path: '/:pathMatch(.*)*',
         name: 'NotFound',
