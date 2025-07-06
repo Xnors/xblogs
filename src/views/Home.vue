@@ -2,6 +2,12 @@
 import "sober";
 import Blog from "../components/Blog.vue";
 import { defineProps } from "vue";
+import { useRoute } from "vue-router"
+import { onMounted } from "vue";
+
+const route = useRoute();
+
+
 // import blogs from "../blogs";
 // let blogs = reactive([]);
 defineProps({
@@ -10,6 +16,13 @@ defineProps({
     required: true,
   },
 });
+console.log(route);
+onMounted(
+  ()=>{
+    console.log("mounted");
+    console.log(route)
+  }
+)
 </script>
 
 <template>
