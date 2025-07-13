@@ -29,4 +29,4 @@ _blogs.forEach((blog, index) => {
     blogs[index]=blog
 })
 
-export default blogs
+export default _blogs
