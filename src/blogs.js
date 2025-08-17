@@ -1,4 +1,6 @@
-let _blogs = [
+let _blogs = []
+
+_blogs.push(
     {
         name: "Welcome to XBlogs!",
         desc: "欢迎使用 Xblogs! 点击这个卡片上方的蓝字可以查看网站使用教程!",
@@ -7,7 +9,9 @@ let _blogs = [
         author: "Fexcode",
         filename: "welcome.md",
         show: true,
-    },
+    })
+
+_blogs.push(
     {
         name: "XfMusic 音乐播放器推荐算法解析",
         desc: "XfMusic 是一款本地的基于用户行为喜好进行推荐的音乐播放器。本文将介绍 XfMusic 的核心推荐算法.",
@@ -17,16 +21,11 @@ let _blogs = [
         filename: "xfmusicalgorithms.md",
         show: true,
     }
-].reverse()
+)
 
 _blogs.forEach((blog, index) => {
-    blog.routeUrl=`/xblogs/blog/${index}`
+    blog.routeUrl = `/xblogs/blog/${index}`
 })
-
-let blogs={}
-
-_blogs.forEach((blog, index) => {
-    blogs[index]=blog
-})
+_blogs.reverse()
 
 export default _blogs
