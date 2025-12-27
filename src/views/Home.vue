@@ -4,6 +4,29 @@ import Blog from "../components/Blog.vue";
 import { defineProps } from "vue";
 import { useRoute } from "vue-router"
 import { onMounted } from "vue";
+import axios from "axios";
+
+
+const serverApiUrl = import.meta.env.VITE_BASE_URL + "/add_count";
+
+
+const sendNewVisitToServer = (blogid) => {
+  console.log("sending new visit to server");
+  axios
+    .post(serverApiUrl, {
+      blogid: blogid
+    }, { withCredentials: true })
+    .then((response) => {
+      console.log(response.data);
+      if (response.data.status != "success") {
+        console.log("error", response.data);
+      }
+      console.log("New visit sent to server");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
 const route = useRoute();
 
@@ -18,7 +41,7 @@ defineProps({
 });
 console.log(route);
 onMounted(
-  ()=>{
+  () => {
     console.log("mounted");
     console.log(route)
   }
@@ -27,16 +50,8 @@ onMounted(
 
 <template>
   <div class="content">
-    <Blog
-      v-for="blog in blogs"
-      :key="blog.name"
-      :class="blog.name"
-      :name="blog.name"
-      :desc="blog.desc"
-      :date="blog.date"
-      :routeurl="blog.routeUrl"
-      v-show="blog.show"
-    ></Blog>
+    <Blog v-for="blog in blogs" :key="blog.name" :class="blog.name" :name="blog.name" :desc="blog.desc"
+      :date="blog.date" :routeurl="blog.routeUrl" v-show="blog.show" @click="sendNewVisitToServer(blog.id)"></Blog>
   </div>
 </template>
 

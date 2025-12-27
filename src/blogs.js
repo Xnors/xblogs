@@ -23,10 +23,12 @@ _blogs.push(
     }
 )
 
-_blogs.reverse()
+// _blogs.reverse()
 _blogs.forEach((blog, index) => {
+    blog.id = index
     blog.routeUrl = `/xblogs/blog/${index}`
 })
+_blogs.reverse()
 
 
 export default _blogs

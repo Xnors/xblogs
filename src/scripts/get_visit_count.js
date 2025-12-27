@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const serverApiUrl = "https://xnors.pythonanywhere.com/get_visit_count";
+const serverApiUrl = import.meta.env.VITE_BASE_URL + "/getall_read_count_sum";
 
 export const getVisitCount = async () => {
     console.log("Getting visit count from server...");
     try {
         const response = await axios.get(serverApiUrl);
-        const count = response.data;
+        const count = response.data.count;
         const timestamp = Date.now();
 
         // 保存到 localStorage
@@ -39,15 +39,18 @@ export const loadFromCache = () => {
 };
 
 export const initializeVisitCount = async () => {
-        // 尝试从缓存加载
-        const cachedCount = loadFromCache();
-        if (cachedCount) {
-            return cachedCount;
-        } else {
-            // 如果缓存不可用，从服务器获取
-            const count = await getVisitCount();
-            if (count !== null) {
-                return count;
-            }
+    // 尝试从缓存加载
+    const cachedCount = loadFromCache();
+
+    if (cachedCount) {
+        console.log("从缓存加载cachedCount:" + cachedCount);
+        return cachedCount;
+    } else {
+        // 如果缓存不可用，从服务器获取
+        const count = await getVisitCount();
+        if (count !== null) {
+            console.log("从服务器获取count:" + count);
+            return count.count;
         }
-    };
+    }
+};

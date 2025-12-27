@@ -22,19 +22,19 @@ onMounted(async () => {
   // alert(route.params.id)
 });
 
-const getItemFromID=(id)=>{
+const getItemFromID = (id) => {
   console.log(id)
-  console.log(blogs[id])
-return blogs[id]
+  console.log(blogs)
+  return blogs.find(item => item.id == id)
 }
 
 const loadMd = async () => {
   try {
-    let iname=getItemFromID(id)["filename"]
-    console.log("LOADING MD FILE:",iname)
+    let iname = getItemFromID(id)["filename"]
+    console.log("LOADING MD FILE:", iname)
     const response = await fetch(`/xblogs/mds/${iname}`);
     const markdownText = await response.text();
-    
+
     markdowntext.value = markdownText;
     // console.log(markdownText,response);
   } catch (error) {
@@ -51,7 +51,7 @@ function renderMarkdown() {
 
 onMounted(async () => {
   console.log("mounted");
-  
+
   await loadMd();
   nextTick(() => {
     hljs.highlightAll();
@@ -59,7 +59,7 @@ onMounted(async () => {
       console.log("MathJax is not loaded yet, loading it now...");
       initMathJax();
     }
-    else{
+    else {
       console.log("MathJax is not needed for this blog.")
     }
   });
@@ -89,12 +89,12 @@ function initMathJax() {
       }
     }
   };
-  
+
   const script = document.createElement('script');
   script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
   script.async = true;
   document.head.appendChild(script);
-  
+
   script.onload = () => {
     MathJax.typeset();
   };

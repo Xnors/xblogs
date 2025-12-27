@@ -3,23 +3,9 @@ import { RouterView } from "vue-router";
 import { watch, ref, onMounted } from "vue";
 import blogs from "./blogs.js";
 import "sober";
-import axios from "axios";
 import { initializeVisitCount } from "./scripts/get_visit_count.js";
 
-const serverApiUrl = "https://xnors.pythonanywhere.com/new_visit";
-const sendNewVisitToServer = () => {
-  axios
-    .get(serverApiUrl, { withCredentials: true })
-    .then((response) => {
-      console.log(response.data);
-      if (response.data != "ok") {
-        console.log("error", response.data);
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
+
 let searchText = ref("");
 
 // 监听 searchText 的变化并打印其值
@@ -29,7 +15,7 @@ watch(searchText, (newValue) => {
   searchBlogs(newValue);
 });
 
-const blogsFiltered = ref(blogs);
+const blogsFiltered = ref(blogs)
 
 function searchBlogs(text) {
   let author = "";
@@ -77,10 +63,10 @@ function searchBlogs(text) {
 
   console.log(blogsFiltered.value);
 }
+
 let visitCount = ref("(获取中...)");
 
 onMounted(async () => {
-  sendNewVisitToServer();
   try {
     visitCount.value = await initializeVisitCount();
   } catch (error) {
@@ -129,7 +115,7 @@ onMounted(async () => {
       </div>
     </div>
     <main>
-      <RouterView :blogs="blogsFiltered" />
+      <RouterView :blogs="blogsFiltered"/>
     </main>
   </s-page>
 </template>
