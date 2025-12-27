@@ -23,9 +23,10 @@ _blogs.push(
     }
 )
 
+_blogs.reverse()
 _blogs.forEach((blog, index) => {
     blog.routeUrl = `/xblogs/blog/${index}`
 })
-_blogs.reverse()
+
 
 export default _blogs
