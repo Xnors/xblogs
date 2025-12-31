@@ -50,7 +50,7 @@ export const initializeVisitCount = async () => {
         const count = await getVisitCount();
         if (count !== null) {
             console.log("从服务器获取count:" + count);
-            return count.count;
+            return count;
         }
     }
 };

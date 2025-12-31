@@ -4,7 +4,7 @@ import { onMounted, onUnmounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
 const props = defineProps({
-  name: {
+  bname: {
     type: String,
     required: true,
   },
@@ -48,9 +48,10 @@ onUnmounted(() => {
 <template>
   <s-ripple class="blog" @click="snackbar = Snackbar.builder('加载中...')">
     <router-link :to="routeurl" id="gotoBlog">
-      <h2 id="title">{{ name }}</h2>
+      <h2 id="title">{{ bname }}</h2>
       <p id="desc">{{ desc }}</p>
       <p id="date">{{ date }}</p>
+      <p id="readcount">被阅读{{ readcount }}次</p>
     </router-link>
   </s-ripple>
 </template>
@@ -59,6 +60,7 @@ onUnmounted(() => {
 h2 {
   margin: 0;
 }
+
 .blog {
   margin: min(calc(0.5vw + 0.5vh), 12px) max(calc(0.5vw + 0.5vh), 18px);
   padding: max(10px, calc(0.6vw + 0.6vh));
@@ -71,29 +73,45 @@ h2 {
     font-weight: bold;
     margin-bottom: 10px;
   }
+
   #desc {
     font-size: 16px;
     margin-bottom: 10px;
     color: #bebebe;
   }
+
   #date {
     font-size: 14px;
     margin-bottom: 10px;
     color: #757575;
   }
+
   #gotoBlog {
     cursor: pointer;
   }
 
-  transition: background-color 0.1s ease-in-out, transform 0.3s ease-in-out,
-    border 0.3s ease-in-out, all 0.3s ease-in-out;
+  #readcount {
+    // 右下
+    position: absolute;
+    bottom: 0px;
+    right: 10px;
+    font-size: 12px;
+    color: #757575;
+  }
+
+  transition: background-color 0.1s ease-in-out,
+  transform 0.3s ease-in-out,
+  border 0.3s ease-in-out,
+  all 0.3s ease-in-out;
 
   border: 1px solid #75757502;
+
   &:hover {
     transform: translateY(-3px);
     border: 1px solid #bebebe;
   }
 }
+
 router-link {
   color: white;
 }

@@ -8,6 +8,7 @@ import axios from "axios";
 
 
 const serverApiUrl = import.meta.env.VITE_BASE_URL + "/add_count";
+const getReadCountUrl = import.meta.env.VITE_BASE_URL + "/get_read_count";
 
 
 const sendNewVisitToServer = (blogid) => {
@@ -25,6 +26,24 @@ const sendNewVisitToServer = (blogid) => {
     })
     .catch((error) => {
       console.log(error);
+    });
+};
+
+const getReadCount = (blogid) => {
+  axios
+    .post(getReadCountUrl, {
+      blog_id: blogid
+    })
+    .then((response) => {
+      console.log(response.data);
+      if (response.data.status != "success") {
+        console.log("error", response.data);
+      }
+      return response.data.count;
+    })
+    .catch((error) => {
+      console.log(error);
+      return 0;
     });
 };
 
@@ -50,7 +69,7 @@ onMounted(
 
 <template>
   <div class="content">
-    <Blog v-for="blog in blogs" :key="blog.name" :class="blog.name" :name="blog.name" :desc="blog.desc"
+    <Blog v-for="blog in blogs" :key="blog.name" :class="blog.name" :bname="blog.name" :desc="blog.desc"
       :date="blog.date" :routeurl="blog.routeUrl" v-show="blog.show" @click="sendNewVisitToServer(blog.id)"></Blog>
   </div>
 </template>
